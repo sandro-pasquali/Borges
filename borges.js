@@ -7,8 +7,8 @@ var BINDING = {
 	active		: []
 };
 
-var ORIGINAL 	= BINDING.$get("original");
-var ACTIVE		= BINDING.$get("active");
+var ORIGINAL 	= BINDING.original;
+var ACTIVE		= BINDING.active;
 
 var PAGINATION	= 0;
 var CUR_PAGE	= 1;
@@ -439,9 +439,9 @@ while(LIST_M.length) {
 }
 
 if(typeof exports == 'object' && exports) {
-    exports.dealer = KIT;
+    exports.borges = KIT;
 } else {
-    window.dealer = KIT;
+    window.borges = KIT;
 }
 
-};
+})();

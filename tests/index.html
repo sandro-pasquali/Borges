@@ -2,35 +2,48 @@
 <html>
 <head>
 	<title>Dealer</title>
-	<script type="text/javascript" src="../dealer.js"></script>
+	<script type="text/javascript" src="../borges.js"></script>
 	<script type="text/javascript">
 
-        console.log("\nSETS\n\n");
-        
-        dealer.add("sandro", 4, 4, 1, 2, 3, 4, 4, 4, "a", {foo: "BAR"}, [88,99,1010], "some", "more", "more", "stuff")
-        dealer.add("a", "a1", "a2", "a3", "foo", "bar", "baz");
-        dealer.add("b", "b1", "b2", "b3", "foo");
-        dealer.add("c", "c1", "c2", "c3", "foo", "bar");
-        
-      console.log(dealer.members("sandro"));  
-        
-        console.log(dealer.intersect("a", "b", "c"));
-        console.log(dealer.intersect(["foo", "bar", "c1"], "a", "c"));
-        console.log(dealer.diff("a","b","c"));
-        console.log(dealer.diff(["foo", "bar", "bink"], "a", "b", "c"));
-        console.log(dealer.union("a", "b", "c"));
-        console.log(dealer.union(["zip","zap"], "a", "b", "c"));
-        
-        
-        console.log(dealer.members("sandro"))
-        console.log("Removed:");
-        console.log(dealer.remove("sandro", 1, 2, "a", "some"))
-        console.log(dealer.members("sandro"))
-        dealer.add("sandro", "wooga")
-        console.log(dealer.members("sandro"))
-
-
-console.log(dealer)
+    console.log("LISTS\n\n");
+    
+    var L = borges;
+    
+    L.first("pages", "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+    console.log(L.get("pages"))
+    
+    L.paginate("pages", 6);
+    
+    console.log("-1: " + L.page("pages", -1))
+    console.log("-2: " + L.page("pages", -2))
+    console.log("-3: " + L.page("pages", -3))
+    console.log("-4: " + L.page("pages", -4))
+    console.log("-5: " + L.page("pages", -5))
+    console.log("-6: " + L.page("pages", -6))
+    
+    console.log("\n");
+    
+    console.log("1: " + L.page("pages", 1))
+    console.log("2: " + L.page("pages", 2))
+    console.log("3: " + L.page("pages", 3))
+    console.log("4: " + L.page("pages", 4))
+    console.log("5: " + L.page("pages", 5))
+    console.log("6: " + L.page("pages", 6))
+    
+    var iterator = L.iterator("pages");
+    console.log(iterator.prev());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.prev());
+    console.log(iterator.prev());
+    console.log(iterator.prev());
+    
+    L.last("sandro", 4, 4, 1, 2, 3, 4, 4, 4, "a", {foo: "BAR"}, [88,99,1010])
+    L.remove("sandro", -2, 4);
+    L.remove("sandro", 2, 4);
+    L.remove("sandro", 0, 4);
+    L.shuffle("sandro")
 	
 	</script>
 </head>
