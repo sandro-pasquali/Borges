@@ -79,6 +79,8 @@ var METHODS = {
                 break;
             }
         }
+        
+        return cur;
     },
     //  Returns the length of the list
     //
@@ -184,6 +186,8 @@ var METHODS = {
         while(hLen--) {
             cur.splice(hits[hLen], 1);
         }
+        
+        return cur;
     },
     //	Unique-ifys the #active list.
     //
@@ -199,6 +203,8 @@ var METHODS = {
 		}
 
 		cur = r;
+		
+		return cur;
     },
     //	Shuffle a list randomly.
     //
@@ -217,6 +223,8 @@ var METHODS = {
 			cur[len] = cur[r];
 			cur[r] = s;
 		}
+		
+		return cur;
     },
     //  ##compose
     //
