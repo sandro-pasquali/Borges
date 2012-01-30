@@ -218,6 +218,13 @@ var METHODS = {
 			cur[r] = s;
 		}
     },
+    //  ##compose
+    //
+    //  Returns the composed result of a list of functions processed tail to head.
+    //  Expects a single argument, which is the value to pass to the tail function.
+    //  NOTE that no checking is done of list member types. If any member is not a 
+    //  function this will error.
+    //
     compose		: function(cur, a, len) {
     	var last = a;
     	while(len--) {
@@ -226,8 +233,22 @@ var METHODS = {
 
     	return last;
     },
+    //  ##sequence
+    //
+    //  Returns the composed result of a list of functions processed head to tail.
+    //  Expects a single argument, which is the value to pass to the head function.
+    //  NOTE that no checking is done of list member types. If any member is not a 
+    //  function this will error.
+    //
     sequence	: function(cur, a, len) {
-    	return compose(cur.reverse(), a, len);
+    	var last    = a;
+    	var i       = 0
+    	while(i < len) {
+    		last = cur[len].apply(this, last);
+    		i++;
+    	}
+
+    	return last;
     },
     //	Will replace the #original list with the current #active list.
     //
@@ -420,22 +441,21 @@ var LIST_M = [
 ];
 
 var KIT = {};
+var M;
 
-while(LIST_M.length) {
-	(function(m) {
-		KIT[m] = function(ob) {
+while(M = LIST_M.pop()) {
+    KIT[M] = function(ob) {
 
-			//	Methods have varying functional signatures.
-			//
-		    var a = $$.argsToArray(arguments);
+        //	Methods have varying functional signatures.
+        //
+        var a = $$.argsToArray(arguments);
 
-			//	#LIST_ACCESSOR expects method name as first argument.
-			//
-            a.unshift(m);
+        //	#LIST_ACCESSOR expects method name as first argument.
+        //
+        a.unshift(M);
 
-			return LIST_ACCESSOR.apply(KIT, a);
-		};
-	})(LIST_M.pop());
+        return LIST_ACCESSOR.apply(KIT, a);
+    };
 }
 
 if(typeof exports == 'object' && exports) {
