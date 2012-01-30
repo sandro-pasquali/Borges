@@ -443,21 +443,22 @@ var LIST_M = [
 ];
 
 var KIT = {};
-var M;
 
-while(M = LIST_M.pop()) {
-    KIT[M] = function(ob) {
+while(LIST_M.length) {
+	(function(m) {
+        KIT[m] = function() {
+    
+            //	Methods have varying functional signatures.
+            //
+            var a = $$.argsToArray(arguments);
 
-        //	Methods have varying functional signatures.
-        //
-        var a = $$.argsToArray(arguments);
-
-        //	#LIST_ACCESSOR expects method name as first argument.
-        //
-        a.unshift(M);
-
-        return LIST_ACCESSOR.apply(KIT, a);
-    };
+            //	#LIST_ACCESSOR expects method name as first argument.
+            //
+            a.unshift(m);
+    
+            return LIST_ACCESSOR.apply(KIT, a);
+        };
+    })(LIST_M.pop());
 }
 
 if(typeof exports == 'object' && exports) {
