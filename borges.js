@@ -261,18 +261,18 @@ var METHODS = {
     //	Will replace the #original list with the current #active list.
     //
     commit	: function(cur, a, len, key) {
-    	ORIGINAL[key] = $$.copy(ACTIVE[key], 1);
+    	ORIGINAL[key] = $$.copy(ACTIVE[key]);
     },
     //	Will replace the #active list with the #original list.
     //
     reset	: function(cur, a, len, key) {
-    	ACTIVE[key] = $$.copy(ORIGINAL[key], 1);
+    	ACTIVE[key] = $$.copy(ORIGINAL[key]);
     },
     //	Will remove a key (a list) entirely.
     //
     unset	: function(cur, a, len, key) {
-    	BINDING.unset("original." + key);
-    	BINDING.unset("active." + key);
+        delete ACTIVE[key];
+    	delete ORIGINAL[key};
     },
 
     //	Create a basic iterator for a list.
@@ -386,21 +386,17 @@ var LIST_ACCESSOR = function(m, key) {
 	var initial	= false;
 	var result;
 
-    //  There is a value, and it is not a list.
-    //
-    if(cur && !$$.isArray(cur)) {
-        throw "#store->" + key + " is not an active list.";
-    }
-
     //  There is no value set.
     //
     if(!cur) {
-        if(a[0] !== void 0 && (m == "first" || m == "last")) {
+        if($$.isArray(key)) {
+            cur = key;
+        } else if(a[0] !== void 0 && (m == "first" || m == "last")) {
         	cur = ACTIVE[key] = [];
             initial = true;
 		} else if(m === "iterator") {
 			cur = [];
-        } else {
+        }  else {
             return null;
         }
     }
