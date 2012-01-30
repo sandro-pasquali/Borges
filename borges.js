@@ -385,8 +385,6 @@ var LIST_ACCESSOR = function(m, key) {
     }
 
     //  There is no value set.
-    //  #shift and #push create a list if none exists and continue.
-    //  All other methods return null.
     //
     if(!cur) {
         if(a[0] !== void 0 && (m == "first" || m == "last")) {
