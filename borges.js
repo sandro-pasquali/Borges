@@ -272,7 +272,7 @@ var METHODS = {
     //
     unset	: function(cur, a, len, key) {
         delete ACTIVE[key];
-    	delete ORIGINAL[key};
+    	delete ORIGINAL[key];
     },
 
     //	Create a basic iterator for a list.
